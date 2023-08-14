@@ -1,0 +1,29 @@
+.nav {
+  background-color: #3e5a57;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+  color: #fff;
+
+  &__title {
+    font-weight: lighter;
+    font-size: 1.6rem;
+  }
+
+  &__options {
+    &__list {
+      list-style-type: none;
+      display: flex;
+      gap: 2rem;
+      &__element {
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

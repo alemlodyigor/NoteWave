@@ -4,7 +4,7 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: "",
   authDomain: "notewave-a9c40.firebaseapp.com",
   projectId: "notewave-a9c40",
   storageBucket: "notewave-a9c40.appspot.com",

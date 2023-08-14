@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: serif;
+}
+
+.register {
+  width: 100%;
+  height: 100vh;
+  //   background: linear-gradient(180deg, #799f9c 0%, #3e5a57 95%);
+  background-color: #799f9c;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+
+  &-form {
+    label {
+      font-size: 1.6rem;
+    }
+
+    &__title {
+      margin-bottom: 2rem;
+      font-size: 3rem;
+    }
+
+    width: 35rem;
+    margin: 5rem 5rem 0rem 0rem;
+    display: flex;
+    flex-direction: column;
+
+    &__btn {
+      margin-top: 1rem;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: bold;
+      transition: all 0.2s;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &__input {
+      margin-bottom: 2rem;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      border-bottom: 2px solid #fff;
+      outline: none;
+      padding: 1rem 0rem;
+      font-size: 1.6rem;
+    }
+  }
+}
