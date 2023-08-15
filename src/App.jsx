@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Create from "./pages/Create";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -30,6 +31,7 @@ function App() {
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="/create" element={<Create />} />
         </Route>
       </Routes>
     </BrowserRouter>

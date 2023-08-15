@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase";
+import { auth, db, storage } from "../firebase";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import "../scss/Register.scss";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
+import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 
 const Register = () => {
   const [err, setErr] = useState(false);
@@ -15,33 +16,44 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
 
-    const nick = e.target[0].value;
+    const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
+    const file = e.target[3].files[0];
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      await updateProfile(userCredential.user, {
-        displayName: nick,
-      });
+      const date = new Date().getTime();
+      const storageRef = ref(storage, `${displayName + date}`);
 
-      const userDocRef = doc(db, "users", userCredential.user.uid);
-      await setDoc(userDocRef, {
-        Nick: nick,
-        Email: email,
-        UID: userCredential.user.uid,
-      });
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
 
-      const notesCollectionRef = collection(db, "notes");
-      const newNoteDocRef = doc(notesCollectionRef, userCredential.user.uid);
-      await setDoc(newNoteDocRef, { notes: [] });
-      navigate("/");
-      setLoading(false);
+            const notesCollectionRef = collection(db, "notes");
+            const newNoteDocRef = doc(notesCollectionRef, res.user.uid);
+            await setDoc(newNoteDocRef, {notes: []});
+            navigate("/");
+            setLoading(false);
+          } catch (error) {
+            console.error(error);
+            setLoading(false);
+            setErr(true);
+          }
+        })
+      })
+
     } catch (error) {
       console.error(error);
       setLoading(false);
@@ -76,6 +88,24 @@ const Register = () => {
             id="password1"
             required
           />
+          <input type="file" id="avatar" className="register-form__upload" />
+          <label htmlFor="avatar" className="register-form__upload__label">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+            <span>Upload an avatar!</span>
+          </label>
           {err && <span>Something went wrong!</span>}
           {loading && <span>Registering</span>}
           <input

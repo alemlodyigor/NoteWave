@@ -61,5 +61,20 @@
       padding: 1rem 0rem;
       font-size: 1.6rem;
     }
+
+    &__upload{
+      display: none;
+      &__label{
+        margin-bottom: 1rem;
+        display: flex;
+        align-items:center;
+        svg{
+          width: 3.2rem;
+          height: 3.2rem;
+        }
+        cursor:pointer;
+        transition: all .2s;
+      }
+    }
   }
 }

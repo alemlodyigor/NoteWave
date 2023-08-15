@@ -1,13 +1,56 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "../scss/Navbar.scss";
+
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import { AuthContext } from "../context/AuthContext";
+
 const Navbar = () => {
+  const { currentUser } = useContext(AuthContext);
+  const [options, setOptions] = useState(false);
+
+  const handleProfile = () => {
+    if(!options) setOptions(true);
+    else setOptions(false);
+  };
+
   return (
     <div className="nav">
       <h1 className="nav__title">NoteWave</h1>
       <div className="nav__options">
         <ul className="nav__options__list">
-          <li className="nav__options__list__element">LOGIN</li>
-          <li className="nav__options__list__element">REGISTER</li>
+          {currentUser && (
+            <li className="nav__options__list__element">
+              <img
+                src={currentUser.photoURL}
+                alt=""
+                className="nav__options__list__element__img"
+                onClick={handleProfile}
+              />
+              {options && (
+                <ul className="nav__options__list__element__profile">
+                  <li className="nav__options__list__element__profile__element">
+                    Theme switch
+                  </li>
+                  <li className="nav__options__list__element__profile__element">
+                    Archived
+                  </li>
+                  <li className="nav__options__list__element__profile__element">
+                    Settings
+                  </li>
+                  <li className="nav__options__list__element__profile__element" onClick={() => signOut(auth)}>
+                    Logout
+                  </li>
+                </ul>
+              )}
+            </li>
+          )}
+          {!currentUser && (
+            <>
+              <li className="nav__options__list__element">LOGIN</li>
+              <li className="nav__options__list__element">REGISTER</li>
+            </>
+          )}
         </ul>
       </div>
     </div>
