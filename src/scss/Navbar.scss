@@ -54,3 +54,13 @@
     }
   }
 }
+
+a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: #fff;
+    text-decoration: none;
+  }
+}

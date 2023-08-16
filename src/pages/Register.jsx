@@ -5,7 +5,7 @@ import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import "../scss/Register.scss";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const Register = () => {
   const [err, setErr] = useState(false);
@@ -43,7 +43,7 @@ const Register = () => {
 
             const notesCollectionRef = collection(db, "notes");
             const newNoteDocRef = doc(notesCollectionRef, res.user.uid);
-            await setDoc(newNoteDocRef, {notes: []});
+            await setDoc(newNoteDocRef, { notes: [] });
             navigate("/");
             setLoading(false);
           } catch (error) {
@@ -51,9 +51,8 @@ const Register = () => {
             setLoading(false);
             setErr(true);
           }
-        })
-      })
-
+        });
+      });
     } catch (error) {
       console.error(error);
       setLoading(false);
@@ -107,12 +106,21 @@ const Register = () => {
             <span>Upload an avatar!</span>
           </label>
           {err && <span>Something went wrong!</span>}
-          {loading && <span>Registering</span>}
-          <input
-            className="register-form__btn"
-            type="submit"
-            value="JUMP INTO WAVE"
-          />
+          {loading && (
+            <input
+              className="register-form__btn"
+              type="submit"
+              value="WE ARE LOOKING FOR WAVE..."
+              disabled
+            />
+          )}
+          {!loading && (
+            <input
+              className="register-form__btn"
+              type="submit"
+              value="JUMP INTO WAVE!"
+            />
+          )}
         </form>
       </div>
     </div>

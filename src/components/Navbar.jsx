@@ -4,6 +4,7 @@ import "../scss/Navbar.scss";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -47,8 +48,8 @@ const Navbar = () => {
           )}
           {!currentUser && (
             <>
-              <li className="nav__options__list__element">LOGIN</li>
-              <li className="nav__options__list__element">REGISTER</li>
+              <li className="nav__options__list__element"><Link to="/login">LOGIN</Link></li>
+              <li className="nav__options__list__element"><Link to='/register'>REGISTER</Link></li>
             </>
           )}
         </ul>
