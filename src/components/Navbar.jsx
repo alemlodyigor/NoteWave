@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
-import "../scss/Navbar.scss";
-
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import "../scss/Navbar.scss";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);

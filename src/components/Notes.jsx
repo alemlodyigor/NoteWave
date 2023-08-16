@@ -32,7 +32,7 @@ const Notes = () => {
           <Link to="/create">Create new note</Link>
         </button>
       )}
-      {notes.map(note => (
+      {notes.map((note, index) => (
         <div className="home-content__container__notes__element">
           <div className="test"></div>
           <h2>{note.title}</h2>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import "../scss/Register.scss";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import Wave from "../img/wave.svg";
 
 const Register = () => {
   const [err, setErr] = useState(false);
@@ -47,14 +48,12 @@ const Register = () => {
             navigate("/");
             setLoading(false);
           } catch (error) {
-            console.error(error);
             setLoading(false);
             setErr(true);
           }
         });
       });
     } catch (error) {
-      console.error(error);
       setLoading(false);
       setErr(true);
     }
@@ -64,6 +63,9 @@ const Register = () => {
     <div className="register">
       <Navbar />
       <div className="register-container">
+        <div className="register-container__bgc">
+          <img src={Wave} alt="" />
+        </div>
         <form className="register-form" onSubmit={handleSubmit}>
           <h2 className="register-form__title">SIGN UP FOR FREE</h2>
           <label htmlFor="nick">Name</label>

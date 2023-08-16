@@ -6,9 +6,9 @@
 }
 
 .register {
+  overflow-y: hidden;
   width: 100%;
   height: 100vh;
-  //   background: linear-gradient(180deg, #799f9c 0%, #3e5a57 95%);
   background-color: #799f9c;
   color: #fff;
   display: grid;
@@ -17,33 +17,44 @@
 
   &-container {
     display: flex;
-    flex-direction: column;
-    align-items: end;
+    justify-content: flex-end;
+    position:relative;
+    &__bgc{
+      position:absolute;
+      left: -10%;
+      width: 100%;
+      height: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   &-form {
+    z-index: 10;
     label {
-      font-size: 1.6rem;
+      font-size: 2.5rem;
     }
 
     &__title {
       margin-bottom: 2rem;
-      font-size: 3rem;
+      font-size: 4.2rem;
     }
 
-    width: 35rem;
-    margin: 5rem 5rem 0rem 0rem;
+    width: 45rem;
+    margin: 8rem 8rem 0rem 0rem;
     display: flex;
     flex-direction: column;
+    gap: 2rem;
 
     &__btn {
-      margin-top: 1rem;
       border: none;
       background-color: transparent;
       cursor: pointer;
       outline: none;
       color: #fff;
-      font-size: 1.8rem;
+      font-size: 3rem;
       font-weight: bold;
       transition: all 0.2s;
       &:hover {
@@ -52,22 +63,22 @@
     }
 
     &__input {
-      margin-bottom: 2rem;
       background-color: transparent;
       border: none;
       color: #fff;
       border-bottom: 2px solid #fff;
       outline: none;
       padding: 1rem 0rem;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
     }
 
     &__upload{
       display: none;
       &__label{
-        margin-bottom: 1rem;
         display: flex;
         align-items:center;
+        gap: 1rem;
         svg{
           width: 3.2rem;
           height: 3.2rem;

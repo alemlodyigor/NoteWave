@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 const Create = () => {
   const { currentUser } = useContext(AuthContext);
+  const [save, setSave] = useState(false);
+  const [err, setError] = useState(false);
 
   const handleSave = async () => {
     console.log(currentUser);
@@ -23,9 +25,9 @@ const Create = () => {
       await updateDoc(userDocRef, {
         notes: arrayUnion({ title, note, createdAt }),
       });
-      console.log("Note saved successfully!");
+      setSave(true);
     } catch (error) {
-      console.error("Error sacing note: ", error);
+      setError(true);
     }
   };
 
@@ -45,6 +47,8 @@ const Create = () => {
               onClick={handleSave}
             >
               Save
+              {save && "Saved"}
+              {err && "Error"}
             </li>
           </ul>
         </nav>

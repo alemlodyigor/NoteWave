@@ -3,7 +3,8 @@ import "../scss/Register.scss";
 import Navbar from "../components/Navbar";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Wave from "../img/wave.svg";
 
 const Login = () => {
   const [err, setErr] = useState(false);
@@ -21,7 +22,6 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (error) {
-      console.error(error);
       setErr(true);
     }
     setLoading(false);
@@ -31,6 +31,9 @@ const Login = () => {
     <div className="register">
       <Navbar />
       <div className="register-container">
+        <div className="register-container__bgc">
+          <img src={Wave} alt="" />
+        </div>
         <form className="register-form" onSubmit={handleSubmit}>
           <h2 className="register-form__title">LOGIN</h2>
           <label htmlFor="email">Email</label>
@@ -48,12 +51,10 @@ const Login = () => {
             required
           />
           {err && <span>Something went wrong!</span>}
-          {loading && <span>Logining</span>}
-          <input
-            className="register-form__btn"
-            type="submit"
-            value="COME BACK ON WAVE"
-          />
+          <button type="submit" className="register-form__btn">
+            {!loading && "COME BACK ON WAVE"}
+            {loading && "BIG WAVE IS COMING"}
+          </button>
         </form>
       </div>
     </div>
