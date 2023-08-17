@@ -108,14 +108,8 @@ body {
           align-items: center;
           justify-content: center;
           transition: transform 1s;
+          cursor: pointer;
         }
-        // display: grid;
-        // grid-template-columns: repeat(24, 1fr);
-        // grid-template-rows: 1fr;
-        // gap: 10rem;
-        // width: 100vw;
-        // overflow-y: hidden;
-        // overflow-x: auto;
 
         &__btn {
           width: 15rem;

@@ -5,11 +5,11 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "",
-  authDomain: "notewave-a9c40.firebaseapp.com",
-  projectId: "notewave-a9c40",
-  storageBucket: "notewave-a9c40.appspot.com",
-  messagingSenderId: "65993186289",
-  appId: "1:65993186289:web:4e766f0ba9006f7a7c8250"
+  authDomain: "notewave-6dfec.firebaseapp.com",
+  projectId: "notewave-6dfec",
+  storageBucket: "notewave-6dfec.appspot.com",
+  messagingSenderId: "734518332842",
+  appId: "1:734518332842:web:6331a9c945c17bf5e96fd3"
 };
 
 export const app = initializeApp(firebaseConfig);
