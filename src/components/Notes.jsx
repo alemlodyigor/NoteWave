@@ -1,44 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const Notes = () => {
-  const { currentUser } = useContext(AuthContext);
-  const [notes, setNotes] = useState([]);
-
-  useEffect(() => {
-    const fetchNotes = async () => {
-      if (currentUser) {
-        const docRef = doc(db, "notes", currentUser.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          console.log(docSnap.data().notes);
-          const notesList = docSnap.data().notes;
-          setNotes(notesList);
-        } else {
-          console.log("You don't have notes!");
-        }
-      }
-    };
-    fetchNotes();
-  }, [currentUser]);
-
+const Notes = ({notes}) => {
   return (
-    <>
-      {!notes && (
-        <button>
-          <Link to="/create">Create new note</Link>
+    <div>
+      {notes.length === 0 ? (
+        <button className="home-content__container__notes__btn">
+          <Link to="/create">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </Link>
         </button>
+      ) : (
+        notes.map((note, index) => (
+          <div className="home-content__container__notes__note" key={index}>
+            <div className="test"></div>
+            <h2>{note.title}</h2>
+          </div>
+        ))
       )}
-      {notes.map((note, index) => (
-        <div className="home-content__container__notes__element">
-          <div className="test"></div>
-          <h2>{note.title}</h2>
-        </div>
-      ))}
-    </>
+    </div>
   );
 };
 
