@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../scss/Home.scss";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Notes from "../components/Notes";
 import { AuthContext } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import NoteDetail from "./NoteDetail";
 
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
@@ -102,10 +101,7 @@ const Home = () => {
             </div>
           </div>
           <div className="home-content__container__notes">
-            <Routes>
-              <Route path="/" element={<Notes notes={notes} />} />
-              <Route path="/note/:noteId" element={<NoteDetail />} />
-            </Routes>
+            <Notes notes={notes} />
           </div>
         </div>
       </div>

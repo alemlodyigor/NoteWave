@@ -1,3 +1,4 @@
+import React from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -5,7 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Create from "./pages/Create";
-import NoteDetail from "./pages/NoteDetail";
+import Edit from "./pages/Edit";
+import Note from "./pages/Note";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -21,20 +23,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          <Route
-            index
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="create" element={<Create />} />
-          <Route path="note/:noteId" element={<NoteDetail />} />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="create" element={<Create />} />
+        <Route path="edit/:noteId" element={<Edit />} />
+        <Route path="note/:uid/:noteId" element={<Note />} />
       </Routes>
     </BrowserRouter>
   );

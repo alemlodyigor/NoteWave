@@ -109,6 +109,20 @@ body {
           justify-content: center;
           transition: transform 1s;
           cursor: pointer;
+
+          &__info {
+            display: flex;
+            gap: 5rem;
+            align-items:center;
+            &__share {
+              width: 2.4rem;
+              height: 2.4rem;
+              cursor: pointer;
+              background-color: transparent;
+              border: none;
+              color: #fff;
+            }
+          }
         }
 
         &__btn {

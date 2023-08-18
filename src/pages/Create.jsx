@@ -10,21 +10,23 @@ const Create = () => {
   const { currentUser } = useContext(AuthContext);
   const [save, setSave] = useState(false);
   const [err, setError] = useState(false);
+  const [note, setNote] = useState({ title: "", content: "" });
 
   const handleSave = async () => {
-    const title = document.querySelector(
-      ".create-content__contener__title"
-    ).value;
-    const note = document.querySelector(
-      ".create-content__contener__note"
-    ).value;
     const createdAt = new Date();
     const id = uuidv4();
 
     try {
       const userDocRef = doc(db, "notes", currentUser.uid);
       await updateDoc(userDocRef, {
-        notes: arrayUnion({ id, title, note, createdAt, createdBy: currentUser.uid }),
+        notes: arrayUnion({
+          id,
+          title: note.title,
+          note: note.content,
+          createdAt,
+          editedAt: createdAt,
+          createdBy: currentUser.uid,
+        }),
       });
       setSave(true);
     } catch (error) {
@@ -61,11 +63,13 @@ const Create = () => {
             type="text"
             className="create-content__contener__title"
             placeholder="Title..."
+            onChange={(e) => setNote({ ...note, title: e.target.value })}
           />
           <textarea
             className="create-content__contener__note"
             placeholder="Type here..."
-          ></textarea>
+            onChange={(e) => setNote({ ...note, content: e.target.value })}
+          />
         </div>
       </div>
     </div>
