@@ -52,7 +52,7 @@ const ChangePassword = () => {
         <div className="register-container__bgc">
           <img src={Wave} alt="" />
         </div>
-        <form className="register-form" onSubmit={handleSubmit}>
+        <form className="register-form" onSubmit={handleChangePassword}>
           <h2 className="register-form__title">CHANGE PASSWORD</h2>
           <label htmlFor="curpasswd">Enter current password</label>
           <input

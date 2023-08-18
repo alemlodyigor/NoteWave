@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div className="nav">
-      <h1 className="nav__title">NoteWave</h1>
+      <h1 className="nav__title"><Link to="/">NoteWave</Link></h1>
       <div className="nav__options">
         <ul className="nav__options__list">
           {currentUser && (
