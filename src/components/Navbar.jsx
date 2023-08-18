@@ -10,7 +10,7 @@ const Navbar = () => {
   const [options, setOptions] = useState(false);
 
   const handleProfile = () => {
-    if(!options) setOptions(true);
+    if (!options) setOptions(true);
     else setOptions(false);
   };
 
@@ -35,10 +35,15 @@ const Navbar = () => {
                   <li className="nav__options__list__element__profile__element">
                     Archived
                   </li>
-                  <li className="nav__options__list__element__profile__element">
-                    Settings
-                  </li>
-                  <li className="nav__options__list__element__profile__element" onClick={() => signOut(auth)}>
+                  <Link to="settings">
+                    <li className="nav__options__list__element__profile__element">
+                      Settings
+                    </li>
+                  </Link>
+                  <li
+                    className="nav__options__list__element__profile__element"
+                    onClick={() => signOut(auth)}
+                  >
                     Logout
                   </li>
                 </ul>
@@ -47,8 +52,12 @@ const Navbar = () => {
           )}
           {!currentUser && (
             <>
-              <li className="nav__options__list__element"><Link to="/login">LOGIN</Link></li>
-              <li className="nav__options__list__element"><Link to='/register'>REGISTER</Link></li>
+              <li className="nav__options__list__element">
+                <Link to="/login">LOGIN</Link>
+              </li>
+              <li className="nav__options__list__element">
+                <Link to="/register">REGISTER</Link>
+              </li>
             </>
           )}
         </ul>

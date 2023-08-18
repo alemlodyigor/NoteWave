@@ -7,7 +7,7 @@ import "../scss/Create.scss";
 
 const Edit = () => {
   const { currentUser } = useContext(AuthContext);
-  const { id } = useParams();
+  const { noteId } = useParams();
 
   const [note, setNote] = useState({
     title: "",
@@ -22,8 +22,8 @@ const Edit = () => {
 
         if (noteDoc.exists()) {
           const notesData = noteDoc.data().notes;
-          const currentNote = notesData.find((n) => n.id === id);
-
+          const currentNote = notesData.find((n) => n.id === noteId);
+          console.log(currentNote);
           if (currentNote) {
             setNote({
               title: currentNote.title,
@@ -36,7 +36,7 @@ const Edit = () => {
       }
     };
     fetchNote();
-  }, [id, currentUser.uid]);
+  }, [noteId, currentUser.uid]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +52,7 @@ const Edit = () => {
     const noteDoc = await getDoc(noteRef);
     const notesData = noteDoc.data().notes;
 
-    const noteIndex = notesData.findIndex((n) => n.id === id);
+    const noteIndex = notesData.findIndex((n) => n.id === noteId);
     const editedAt = new Date();
     if (noteIndex !== -1) {
       notesData[noteIndex] = {

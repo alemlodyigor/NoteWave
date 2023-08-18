@@ -8,6 +8,7 @@ import { AuthContext } from "./context/AuthContext";
 import Create from "./pages/Create";
 import Edit from "./pages/Edit";
 import Note from "./pages/Note";
+import Settings from "./pages/Settings";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -27,6 +28,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="create" element={<Create />} />
+        <Route path="settings" element={<Settings />} />
         <Route path="edit/:noteId" element={<Edit />} />
         <Route path="note/:uid/:noteId" element={<Note />} />
       </Routes>
