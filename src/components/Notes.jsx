@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Notes = ({notes}) => {
+const Notes = ({ notes }) => {
   return (
     <div>
       {notes.length === 0 ? (
@@ -25,10 +25,14 @@ const Notes = ({notes}) => {
         </button>
       ) : (
         notes.map((note, index) => (
-          <div className="home-content__container__notes__note" key={index}>
+          <Link
+            key={note.id}
+            to={`/note/${note.id}`}
+            className="home-content__container__notes__note"
+          >
             <div className="test"></div>
             <h2>{note.title}</h2>
-          </div>
+          </Link>
         ))
       )}
     </div>

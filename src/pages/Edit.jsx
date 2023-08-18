@@ -1,73 +1,57 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useParams, useHistory } from "react-router-dom";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  AuthContext,
+} from "../context/AuthContext";
 import { db } from "../firebase";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import "../scss/Create.scss";
-import { Link } from "react-router-dom";
 
 const Edit = () => {
   const { currentUser } = useContext(AuthContext);
-  const [save, setSave] = useState(false);
-  const [err, setError] = useState(false);
+  const { noteId } = useParams();
+  const history = useHistory();
+  const [note, setNote] = useState(false);
 
-  const handleSave = async () => {
-    const title = document.querySelector(
-      ".create-content__contener__title"
-    ).value;
-    const note = document.querySelector(
-      ".create-content__contener__note"
-    ).value;
-    const createdAt = new Date();
+  useEffect(() => {
+    const fetchNote = async () => {
+      if (currentUser) {
+        const docRef = doc(db, "notes", currentUser.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const notesList = docSnap.data().notes;
+          const selectedNote = noteList.find((n) => n.id === noteId);
+          if (selectedNote) setNote(selectedNote);
+          else history.push("/");
+        }
+      }
+    };
+  }, [currentUser, noteId, history]);
 
-    try {
-      const userDocRef = doc(db, "notes", currentUser.uid);
-      await updateDoc(userDocRef, {
-        notes: arrayUnion({ title, note, createdAt }),
-      });
-      setSave(true);
-    } catch (error) {
-      setError(true);
+  const handleEdit = async () => {
+    if (note && note.createdBy === currentUser.uid) {
+      // Tu będzie edycja
     }
-  };
+    else console.log('nie możesz tego edytować');
+  }
 
-  return (
-    <div className="create">
-      <div className="create-header">
-        <h1 className="create-header__title">
-          <Link to="/">NoteWave</Link>
-        </h1>
-        <nav className="create-header__nav">
-          <ul className="create-header__nav__options">
-            <li className="create-header__nav__options__element">
-              Customize the card
-            </li>
-            <li
-              className="create-header__nav__options__element"
-              onClick={handleSave}
-            >
-              Save
-              {save && "Saved"}
-              {err && "Error"}
-            </li>
-          </ul>
-        </nav>
-      </div>
+  const handleDelete = async () => {
+    if(note && note.createdBy === currentUser.uid) {
+      try {
+        const userDocRef = doc(db, "notes", currentUser.uid);
+        await updateDoc(userDocRef, {
+          notes: notes.filter((n) => n.id !== noteId)
+        });
+        history.push("/");
+      } catch (error) {
+        console.log("You don't have permission to delete this note!");
+      }
+    }
+  }
 
-      <div className="create-content">
-        <div className="create-content__contener">
-          <input
-            type="text"
-            className="create-content__contener__title"
-            value={note.title}
-          />
-          <textarea
-            className="create-content__contener__note"
-            value={note.note}
-          ></textarea>
-        </div>
-      </div>
-    </div>
-  );
+  return <div>Edit</div>;
 };
 
 export default Edit;

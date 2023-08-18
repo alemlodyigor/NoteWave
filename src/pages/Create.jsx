@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import "../scss/Create.scss";
 import { Link } from "react-router-dom";
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const Create = () => {
   const { currentUser } = useContext(AuthContext);
@@ -24,7 +24,7 @@ const Create = () => {
     try {
       const userDocRef = doc(db, "notes", currentUser.uid);
       await updateDoc(userDocRef, {
-        notes: arrayUnion({ id, title, note, createdAt }),
+        notes: arrayUnion({ id, title, note, createdAt, createdBy: currentUser.uid }),
       });
       setSave(true);
     } catch (error) {

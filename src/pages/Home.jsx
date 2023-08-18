@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../scss/Home.scss";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Notes from "../components/Notes";
 import { AuthContext } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import NoteDetail from "./NoteDetail";
 
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
@@ -18,7 +19,6 @@ const Home = () => {
         const docRef = doc(db, "notes", currentUser.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          console.log(docSnap.data().notes);
           const notesList = docSnap.data().notes;
           setNotes(notesList);
         }
@@ -89,7 +89,7 @@ const Home = () => {
         <div className="home-content__container">
           <div className="home-content__container__options">
             <p className="home-content__container__options__add">
-              <Link to="/create">CREATE</Link>
+              <Link to="create">CREATE</Link>
             </p>
             <div className="home-content__container__options__sites">
               <button className="home-content__container__options__sites__btn notes__btn-left">
@@ -102,7 +102,10 @@ const Home = () => {
             </div>
           </div>
           <div className="home-content__container__notes">
-            <Notes notes={notes} />
+            <Routes>
+              <Route path="/" element={<Notes notes={notes} />} />
+              <Route path="/note/:noteId" element={<NoteDetail />} />
+            </Routes>
           </div>
         </div>
       </div>

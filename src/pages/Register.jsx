@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
-import "../scss/Register.scss";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Wave from "../img/wave.svg";
+import "../scss/Register.scss";
 
 const Register = () => {
   const [err, setErr] = useState(false);
@@ -128,7 +132,6 @@ const Register = () => {
               value="JUMP INTO WAVE!"
             />
           )}
-
         </form>
       </div>
     </div>
