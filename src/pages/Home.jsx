@@ -6,6 +6,7 @@ import Notes from "../components/Notes";
 import { AuthContext } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import Settings from "./Settings";
 
 const Home = () => {
   const { currentUser } = useContext(AuthContext);

@@ -10,45 +10,26 @@ const Navbar = () => {
   const [options, setOptions] = useState(false);
 
   const handleProfile = () => {
-    if (!options) setOptions(true);
-    else setOptions(false);
+    setOptions(true);
   };
 
   return (
     <div className="nav">
-      <h1 className="nav__title"><Link to="/">NoteWave</Link></h1>
+      <h1 className="nav__title">
+        <Link to="/">NoteWave</Link>
+      </h1>
       <div className="nav__options">
         <ul className="nav__options__list">
-          {currentUser && (
-            <li className="nav__options__list__element">
-              <img
-                src={currentUser.photoURL}
-                alt=""
-                className="nav__options__list__element__img"
-                onClick={handleProfile}
-              />
-              {options && (
-                <ul className="nav__options__list__element__profile">
-                  <li className="nav__options__list__element__profile__element">
-                    Theme switch
-                  </li>
-                  <li className="nav__options__list__element__profile__element">
-                    Archived
-                  </li>
-                  <Link to="settings">
-                    <li className="nav__options__list__element__profile__element">
-                      Settings
-                    </li>
-                  </Link>
-                  <li
-                    className="nav__options__list__element__profile__element"
-                    onClick={() => signOut(auth)}
-                  >
-                    Logout
-                  </li>
-                </ul>
-              )}
-            </li>
+          {currentUser && !options && (
+            <Link to="settings" onClick={handleProfile}>
+              <li className="nav__options__list__element">
+                <img
+                  src={currentUser.photoURL}
+                  alt=""
+                  className="nav__options__list__element__img"
+                />
+              </li>
+            </Link>
           )}
           {!currentUser && (
             <>

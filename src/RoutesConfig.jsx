@@ -12,6 +12,7 @@ import Settings from "./pages/Settings";
 import DeleteAcc from "./components/DeleteAcc";
 import ChangePassword from "./components/ChangePassword";
 import ChangeEmail from "./components/ChangeEmail";
+import Archived from "./components/Archived";
 
 const RoutesConfig = () => {
   const { currentUser } = useContext(AuthContext);
@@ -35,6 +36,7 @@ const RoutesConfig = () => {
         <Route path="/settings/changemail" element={<ChangeEmail />} />
         <Route path="/settings/changepassword" element={<ChangePassword />} />
         <Route path="/settings/deleteaccount" element={<DeleteAcc />} />
+        <Route path="/settings/archivednotes" element={<Archived />} />
         <Route path="edit/:noteId" element={<Edit />} />
         <Route path="note/:uid/:noteId" element={<Note />} />
       </Routes>

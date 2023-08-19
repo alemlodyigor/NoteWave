@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../scss/Register.scss";
 import Wave from "../img/wave.svg";
 import Navbar from "../components/Navbar";
 import "../scss/Settings.scss";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 
 const Settings = () => {
   return (
@@ -13,8 +15,10 @@ const Settings = () => {
         <div className="register-container__bgc">
           <img src={Wave} alt="" />
         </div>
-
         <div className="settings-options">
+          <Link to="archived">
+            <button>ARCHIVED NOTES</button>
+          </Link>
           <Link to="changemail">
             <button>CHANGE EMAIL</button>
           </Link>
@@ -24,6 +28,7 @@ const Settings = () => {
           <Link to="deleteaccount">
             <button>DELETE ACCOUNT</button>
           </Link>
+          <button onClick={() => signOut(auth)}>LOG OUT</button>
         </div>
       </div>
     </div>
