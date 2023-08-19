@@ -10,7 +10,7 @@
 
   &__title {
     font-weight: lighter;
-    font-size: 1.6rem;
+    font-size: 2.2rem;
   }
 
   &__options {
@@ -37,11 +37,13 @@
           }
         }
         &__profile {
-          background-color: pink;
+          background-color: #3e5a57;
           width: 15rem;
+          transform: scale(1.15);
           position: absolute;
           right: -50%;
           display: flex;
+          padding: 1rem;
           flex-direction: column;
           list-style-type: none;
           gap: 1rem;
@@ -49,6 +51,7 @@
           &__element {
             text-transform: uppercase;
             width: 100%;
+
           }
         }
       }

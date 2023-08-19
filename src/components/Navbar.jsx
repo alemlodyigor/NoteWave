@@ -10,7 +10,8 @@ const Navbar = () => {
   const [options, setOptions] = useState(false);
 
   const handleProfile = () => {
-    setOptions(true);
+    if (!options) setOptions(true);
+    else setOptions(false);
   };
 
   return (
@@ -20,16 +21,34 @@ const Navbar = () => {
       </h1>
       <div className="nav__options">
         <ul className="nav__options__list">
-          {currentUser && !options && (
-            <Link to="settings" onClick={handleProfile}>
-              <li className="nav__options__list__element">
-                <img
-                  src={currentUser.photoURL}
-                  alt=""
-                  className="nav__options__list__element__img"
-                />
-              </li>
-            </Link>
+          {currentUser && (
+            <li className="nav__options__list__element">
+              <img
+                src={currentUser.photoURL}
+                alt=""
+                className="nav__options__list__element__img"
+                onClick={handleProfile}
+              />
+              {options && (
+                <ul className="nav__options__list__element__profile">
+                  <li className="nav__options__list__element__profile__element">
+                    Theme switch
+                  </li>
+                  <li className="nav__options__list__element__profile__element">
+                    Archived
+                  </li>
+                  <li className="nav__options__list__element__profile__element">
+                    Settings
+                  </li>
+                  <li
+                    className="nav__options__list__element__profile__element"
+                    onClick={() => signOut(auth)}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              )}
+            </li>
           )}
           {!currentUser && (
             <>

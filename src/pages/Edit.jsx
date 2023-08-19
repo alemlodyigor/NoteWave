@@ -4,6 +4,7 @@ import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import "../scss/Create.scss";
+import Wave from "../img/wave.svg"
 
 const Edit = () => {
   const { currentUser } = useContext(AuthContext);
@@ -86,7 +87,9 @@ const Edit = () => {
           </ul>
         </nav>
       </div>
-
+      <div className="create__bgc">
+        <img src={Wave} alt="" />
+      </div>
       <div className="create-content">
         <div className="create-content__contener">
           <input

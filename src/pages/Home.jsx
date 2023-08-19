@@ -6,7 +6,7 @@ import Notes from "../components/Notes";
 import { AuthContext } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import Settings from "./Settings";
+import Wave from "../img/wave.svg";
 
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,60 +27,63 @@ const Home = () => {
     fetchNotes();
   }, [currentUser]);
 
-  useEffect(() => {
-    const slider = () => {
-      const slides = document.querySelectorAll(
-        ".home-content__container__notes__note"
-      );
-      const btnLeft = document.querySelector(".notes__btn-left");
-      const btnRight = document.querySelector(".notes__btn-right");
-      const sites = document.querySelector(
-        ".home-content__container__options__sites__p"
-      );
+  // useEffect(() => {
+  //   const slider = () => {
+  //     const slides = document.querySelectorAll(
+  //       ".home-content__container__notes__note"
+  //     );
+  //     const btnLeft = document.querySelector(".notes__btn-left");
+  //     const btnRight = document.querySelector(".notes__btn-right");
+  //     const sites = document.querySelector(
+  //       ".home-content__container__options__sites__p"
+  //     );
 
-      let curSlide = 0;
-      const maxSlide = slides.length;
+  //     let curSlide = 0;
+  //     const maxSlide = slides.length;
 
-      const goToSlide = (slide) => {
-        slides.forEach(
-          (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-        );
-        sites.textContent = `${curSlide + 1}/${slides.length}`;
-      };
+  //     const goToSlide = (slide) => {
+  //       slides.forEach(
+  //         (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  //       );
+  //       sites.textContent = `${curSlide + 1}/${slides.length}`;
+  //     };
 
-      const nextSlide = () => {
-        if (curSlide === maxSlide - 1) curSlide = 0;
-        else curSlide++;
+  //     const nextSlide = () => {
+  //       if (curSlide === maxSlide - 1) curSlide = 0;
+  //       else curSlide++;
 
-        goToSlide(curSlide);
-      };
+  //       goToSlide(curSlide);
+  //     };
 
-      const prevSlide = () => {
-        if (curSlide === 0) curSlide = maxSlide - 1;
-        else curSlide--;
+  //     const prevSlide = () => {
+  //       if (curSlide === 0) curSlide = maxSlide - 1;
+  //       else curSlide--;
 
-        goToSlide(curSlide);
-      };
+  //       goToSlide(curSlide);
+  //     };
 
-      const init = () => {
-        goToSlide(0);
-      };
+  //     const init = () => {
+  //       goToSlide(0);
+  //     };
 
-      init();
+  //     init();
 
-      btnRight.addEventListener("click", nextSlide);
-      btnLeft.addEventListener("click", prevSlide);
-    };
+  //     btnRight.addEventListener("click", nextSlide);
+  //     btnLeft.addEventListener("click", prevSlide);
+  //   };
 
-    if (notes.length > 0 && !sliderInitialized) {
-      setSliderInitialized(true);
-      slider();
-    }
-  }, [notes, sliderInitialized]);
+  //   if (notes.length > 0 && !sliderInitialized) {
+  //     setSliderInitialized(true);
+  //     slider();
+  //   }
+  // }, [notes, sliderInitialized]);
 
   return (
     <div className="home">
       <Navbar />
+      <div className="home-content__bgc">
+        <img src={Wave} alt="" />
+      </div>
       <div className="home-content">
         <h2 className="home-content__title">
           Welcome <br />

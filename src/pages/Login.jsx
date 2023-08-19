@@ -83,18 +83,18 @@ const Login = () => {
                   id="password1"
                   required
                 />
+                <button
+                  className="register-form__btn-reset"
+                  onClick={switchForms}
+                >
+                  Forgot password?
+                </button>
                 {err && <span>Something went wrong!</span>}
                 <button type="submit" className="register-form__btn">
                   {!loading && "COME BACK ON WAVE"}
                   {loading && "BIG WAVE IS COMING"}
                 </button>
               </form>
-              <button
-                className="register-form__btn-reset"
-                onClick={switchForms}
-              >
-                Forgot password?
-              </button>
             </>
           ) : (
             <form className="register-form" onSubmit={handleForgotPassword}>
@@ -105,7 +105,6 @@ const Login = () => {
                 id="email"
                 required
               />
-              {forgot && <span>Check your email!</span>}
               <button type="submit" className="register-form__btn">
                 {forgot ? "Check your email!" : "Send reset email"}
                 {err && "Something went wrong!"}
@@ -119,4 +118,3 @@ const Login = () => {
 };
 
 export default Login;
-

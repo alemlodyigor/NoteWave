@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-
+import Wave from "../img/wave.svg";
 const Note = () => {
   const { uid, noteId } = useParams();
   const [note, setNote] = useState(null);
@@ -39,7 +39,9 @@ const Note = () => {
           <Link to="/">NoteWave</Link>
         </h1>
       </div>
-
+      <div className="create__bgc">
+        <img src={Wave} alt="" />
+      </div>
       {note ? (
         <div className="create-content">
           <div className="create-content__contener">
