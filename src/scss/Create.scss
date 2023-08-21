@@ -75,7 +75,11 @@
 
     &__title {
       font-weight: lighter;
-      font-size: 1.6rem;
+      font-size: 2.4rem;
+      transition: all 0.2s;
+      &:hover {
+        transform: scale(1.05);
+      }
     }
     &__nav {
       &__options {
@@ -84,12 +88,15 @@
         align-items: center;
         gap: 5rem;
         margin-right: 10rem;
+        font-size: 2.2rem;
         &__element {
           cursor: pointer;
-          transition: all 0.2s;
           position: relative;
-          &:hover {
-            transform: scale(1.05);
+          p {
+            transition: all 0.2s;
+            &:hover {
+              transform: scale(1.05);
+            }
           }
         }
       }
@@ -98,11 +105,87 @@
 }
 
 .card-options__list {
-  margin-top: 2rem;
-  width: 100%;
-  list-style-type: none;
+  background-color: #3e5a57;
+  width: 15rem;
+  transform: scale(1.15);
+  position: absolute;
+  top: 200%;
+  right: -20%;
   display: flex;
+  padding: 1rem;
   flex-direction: column;
-  align-items: end;
+  list-style-type: none;
   gap: 1rem;
+  font-size: 1.5rem;
+  &__element {
+    transition: all 0.2s;
+    text-transform: uppercase;
+    width: 100%;
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+}
+
+.lines {
+  background-image: linear-gradient(0deg, #ccc 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  border: 1px solid #ccc;
+}
+
+.squares {
+  background-image: linear-gradient(#ccc 1px, transparent 1px),
+    linear-gradient(90deg, #ccc 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  border: 1px solid #ccc;
+}
+
+.dots {
+  background-image: radial-gradient(#ccc 10%, transparent 20%);
+  background-size: 10px 10px;
+}
+
+.context-menu {
+  position: absolute;
+  display: none;
+  background-color: #1b1a1a;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  color: #ccc;
+  &__option {
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.2s;
+    position: relative;
+
+    &:hover {
+      background-color: #343434;
+    }
+    &__list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background-color: #1b1a1a;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      &__element {
+        cursor: pointer;
+        padding: 8px 10px;
+        &:hover {
+          background-color: #343434;
+        }
+      }
+    }
+  }
+}
+.context-menu__option:hover .context-menu__option__list {
+  display: block;
 }
