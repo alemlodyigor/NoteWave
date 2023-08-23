@@ -5,8 +5,7 @@ import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import "../scss/Create.scss";
 import Wave from "../img/wave.svg";
-import { CustomMenu } from "../functions/context-menu";
-
+import CustomMenu from "../components/CustomMenu";
 
 const Edit = () => {
   const { currentUser } = useContext(AuthContext);
@@ -32,7 +31,6 @@ const Edit = () => {
         if (noteDoc.exists()) {
           const notesData = noteDoc.data().notes;
           const currentNote = notesData.find((n) => n.id === noteId);
-          console.log(currentNote);
           if (currentNote) {
             setNote({
               title: currentNote.title,
@@ -74,8 +72,6 @@ const Edit = () => {
       await updateDoc(noteRef, { notes: notesData });
     }
   };
-
-  CustomMenu();
 
   return (
     <div className="create">
@@ -145,44 +141,7 @@ const Edit = () => {
           />
         </div>
       </div>
-      <div className="context-menu">
-        <div className="context-menu__option">
-          Change font
-          <ul className="context-menu__option__list">
-            <li className="context-menu__option__list__element">
-              Czcionka numer 1
-            </li>
-            <li className="context-menu__option__list__element">
-              Czcionka numer 2
-            </li>
-            <li className="context-menu__option__list__element">
-              Czcionka numer 3
-            </li>
-            <li className="context-menu__option__list__element">
-              Czcionka numer 4
-            </li>
-            <li className="context-menu__option__list__element">
-              Czcionka numer 5
-            </li>
-            <li className="context-menu__option__list__element">
-              Czcionka numer 6
-            </li>
-          </ul>
-        </div>
-        <div className="context-menu__option">Increase</div>
-        <div className="context-menu__option">Decrease</div>
-        <div className="context-menu__option">Bold</div>
-        <div className="context-menu__option">Italic</div>
-        <div className="context-menu__option">
-          Change font color
-          <ul className="context-menu__option__list">
-            <li className="context-menu__option__list__element">GREEN</li>
-            <li className="context-menu__option__list__element">RED</li>
-            <li className="context-menu__option__list__element">BLUE</li>
-            <li className="context-menu__option__list__element">ORANGE</li>
-          </ul>
-        </div>
-      </div>
+      <CustomMenu />
     </div>
   );
 };
