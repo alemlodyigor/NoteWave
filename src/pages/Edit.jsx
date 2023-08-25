@@ -10,17 +10,17 @@ import CustomMenu from "../components/CustomMenu";
 const Edit = () => {
   const { currentUser } = useContext(AuthContext);
   const { noteId } = useParams();
+  const [note, setNote] = useState({ title: "", content: "" });
   const [cardType, setCardType] = useState("");
   const [options, setOptions] = useState(false);
+
+  const handleContentChange = (newContent) => {
+    setNote((prevNote) => ({ ...prevNote, content: newContent }));
+  };
 
   const handleShowOptions = () => {
     options ? setOptions(false) : setOptions(true);
   };
-
-  const [note, setNote] = useState({
-    title: "",
-    content: "",
-  });
 
   useEffect(() => {
     const fetchNote = async () => {
@@ -128,20 +128,20 @@ const Edit = () => {
         <div className={`create-content__contener ${cardType}`}>
           <input
             type="text"
-            name="title"
             className="create-content__contener__title"
-            value={note.title}
-            onChange={handleInputChange}
+            placeholder="Title..."
+            onChange={(e) => setNote({ ...note, title: e.target.value })}
           />
-          <textarea
+          <div
             className="create-content__contener__note"
-            name="content"
-            value={note.content}
-            onChange={handleInputChange}
-          />
+            id="myDiv"
+            contentEditable="true"
+            onBlur={(e) => handleContentChange(e.target.innerHTML)}
+            dangerouslySetInnerHTML={{ __html: note.content }}
+          ></div>
         </div>
       </div>
-      <CustomMenu />
+      <CustomMenu updateContent={handleContentChange} />
     </div>
   );
 };

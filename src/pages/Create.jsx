@@ -104,11 +104,12 @@ const Create = () => {
             placeholder="Title..."
             onChange={(e) => setNote({ ...note, title: e.target.value })}
           />
-          <textarea
+          <div
             className="create-content__contener__note"
-            placeholder="Type here..."
-            onChange={(e) => setNote({ ...note, content: e.target.value })}
-          />
+            id="myDiv"
+            contentEditable="true"
+            dangerouslySetInnerHTML={{ __html: note.content }}
+          ></div>
         </div>
       </div>
       <CustomMenu />
