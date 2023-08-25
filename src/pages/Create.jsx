@@ -16,6 +16,10 @@ const Create = () => {
   const [cardType, setCardType] = useState("");
   const [options, setOptions] = useState(false);
 
+  const handleContentChange = (newContent) => {
+    setNote((prevNote) => ({ ...prevNote, content: newContent }));
+  };
+
   const handleShowOptions = () => {
     options ? setOptions(false) : setOptions(true);
   };
@@ -108,6 +112,7 @@ const Create = () => {
             className="create-content__contener__note"
             id="myDiv"
             contentEditable="true"
+            onBlur={(e) => handleContentChange(e.target.innerHTML)}
             dangerouslySetInnerHTML={{ __html: note.content }}
           ></div>
         </div>

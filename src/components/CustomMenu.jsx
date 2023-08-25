@@ -21,7 +21,7 @@ const CustomMenu = () => {
           <button
             className="context-menu__option__list__element"
             onClick={() =>
-              applyStyle((span) => (span.style.fontFamily = "Times New ROman"))
+              applyStyle((span) => (span.style.fontFamily = "Times New Roman"))
             }
           >
             Times New Roman
@@ -30,9 +30,9 @@ const CustomMenu = () => {
       </div>
       <button
         className="context-menu__option"
-        onClick={() => applyStyle((span) => (span.style.fontSize = "20px"))}
+        onClick={() => applyStyle((span) => (span.style.fontSize = "12px"))}
       >
-        Increase
+        Decrease
       </button>
       <button
         className="context-menu__option"
@@ -42,9 +42,9 @@ const CustomMenu = () => {
       </button>
       <button
         className="context-menu__option"
-        onClick={() => applyStyle((span) => (span.style.fontSize = "14px"))}
+        onClick={() => applyStyle((span) => (span.style.fontSize = "24px"))}
       >
-        Decrease
+        Increase
       </button>
       <button
         className="context-menu__option"
