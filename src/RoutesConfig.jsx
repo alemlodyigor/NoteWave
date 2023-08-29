@@ -17,28 +17,49 @@ import Archived from "./components/Archived";
 const RoutesConfig = () => {
   const { currentUser } = useContext(AuthContext);
 
-  const ProtectedRoute = ({ children }) => {
+  const ProtectedRoute = ({ element: Element }) => {
     if (!currentUser) {
       return <Navigate to="/login" />;
     }
 
-    return children;
+    return <Element />;
   };
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ProtectedRoute element={Home} />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="create" element={<Create />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="/settings/changemail" element={<ChangeEmail />} />
-        <Route path="/settings/changepassword" element={<ChangePassword />} />
-        <Route path="/settings/deleteaccount" element={<DeleteAcc />} />
-        <Route path="/settings/archivednotes" element={<Archived />} />
-        <Route path="edit/:noteId" element={<Edit />} />
-        <Route path="note/:uid/:noteId" element={<Note />} />
+        <Route path="create" element={<ProtectedRoute element={Create} />} />
+        <Route
+          path="settings"
+          element={<ProtectedRoute element={Settings} />}
+        />
+        <Route
+          path="/settings/changemail"
+          element={<ProtectedRoute element={ChangeEmail} />}
+        />
+        <Route
+          path="/settings/changepassword"
+          element={<ProtectedRoute element={ChangePassword} />}
+        />
+        <Route
+          path="/settings/deleteaccount"
+          element={<ProtectedRoute element={DeleteAcc} />}
+        />
+        <Route
+          path="/settings/archivednotes"
+          element={<ProtectedRoute element={Archived} />}
+        />
+        <Route
+          path="edit/:noteId"
+          element={<ProtectedRoute element={Edit} />}
+        />
+        <Route
+          path="note/:uid/:noteId"
+          element={<ProtectedRoute element={Note} />}
+        />
       </Routes>
     </BrowserRouter>
   );
