@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
-import "../scss/Create.scss";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Wave from "../img/wave.svg";

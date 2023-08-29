@@ -3,7 +3,6 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import "../scss/Navbar.scss";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -38,7 +37,7 @@ const Navbar = () => {
                     Archived
                   </li>
                   <li className="nav__options__list__element__profile__element">
-                    Settings
+                    <Link to="settings">Settings</Link>
                   </li>
                   <li
                     className="nav__options__list__element__profile__element"

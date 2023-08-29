@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import Navbar from "./Navbar";
-import "../scss/Register.scss";
 import Wave from "../img/wave.svg";
 import { AuthContext } from "../context/AuthContext";
 import {

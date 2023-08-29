@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
-import "../scss/Create.scss";
 import Wave from "../img/wave.svg";
 import CustomMenu from "../components/CustomMenu";
 

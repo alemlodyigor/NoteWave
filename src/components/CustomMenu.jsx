@@ -1,6 +1,5 @@
 import React from "react";
 import useTextStyling from "../hooks/useTextStyling.js";
-import "../scss/custommenu.scss";
 
 const CustomMenu = () => {
   const { applyStyle } = useTextStyling();

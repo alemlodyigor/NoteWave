@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import "../scss/Home.scss";
 import { Link } from "react-router-dom";
 import Notes from "../components/Notes";
 import { AuthContext } from "../context/AuthContext";

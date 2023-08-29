@@ -1,8 +1,6 @@
 import React from "react";
-import "../scss/Register.scss";
 import Wave from "../img/wave.svg";
 import Navbar from "../components/Navbar";
-import "../scss/Settings.scss";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
@@ -16,7 +14,7 @@ const Settings = () => {
           <img src={Wave} alt="" />
         </div>
         <div className="settings-options">
-          <Link to="archived">
+          <Link to="archivednotes">
             <button>ARCHIVED NOTES</button>
           </Link>
           <Link to="changemail">

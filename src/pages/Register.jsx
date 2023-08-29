@@ -10,7 +10,6 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Wave from "../img/wave.svg";
-import "../scss/Register.scss";
 
 const Register = () => {
   const [err, setErr] = useState(false);

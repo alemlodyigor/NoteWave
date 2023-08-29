@@ -51,10 +51,10 @@ const Note = () => {
               value={note.title}
               disabled
             />
-            <textarea
+            <div
               className="create-content__contener__note"
-              value={note.note}
-              disabled
+              id="myDiv"
+              dangerouslySetInnerHTML={{ __html: note.note }}
             />
           </div>
         </div>

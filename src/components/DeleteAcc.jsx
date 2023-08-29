@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import Wave from "../img/wave.svg";
-import "../scss/Register.scss";
 import { AuthContext } from "../context/AuthContext";
 import {
   deleteUser,
@@ -16,7 +15,6 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import "../scss/Register.scss";
 import Navbar from "./Navbar";
 
 const DeleteAcc = () => {

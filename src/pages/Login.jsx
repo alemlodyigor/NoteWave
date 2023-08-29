@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../scss/Register.scss";
 import Navbar from "../components/Navbar";
 import {
   sendPasswordResetEmail,
