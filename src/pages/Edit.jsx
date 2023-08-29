@@ -36,6 +36,7 @@ const Edit = () => {
               title: currentNote.title,
               content: currentNote.note,
             });
+            setCardType(currentNote.cardType);
           }
         }
       } catch (error) {

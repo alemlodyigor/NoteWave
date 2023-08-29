@@ -8,6 +8,7 @@ const Notes = ({ notes }) => {
     if (options) setOptions(false);
     else setOptions(true);
   };
+  console.log(notes);
 
   return (
     <div>
@@ -34,6 +35,12 @@ const Notes = ({ notes }) => {
         notes.map((note) => (
           <div key={note.id} className="home-content__container__notes__note">
             <div className="home-content__container__notes__note__preview">
+              <div className={`home-content__container__notes__note__preview__card ${note.cardType}`}>
+                <textarea
+                  className="home-content__container__notes__note__preview__card__note"
+                  value={note.note} disabled
+                />
+              </div>
               <button
                 className="home-content__container__notes__note__preview__btn"
                 onClick={handleOptions}

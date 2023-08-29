@@ -38,6 +38,7 @@ const Create = () => {
           createdAt,
           editedAt: createdAt,
           createdBy: currentUser.uid,
+          cardType: cardType,
         }),
       });
       setSave(true);
