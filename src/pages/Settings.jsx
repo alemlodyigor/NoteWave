@@ -14,9 +14,6 @@ const Settings = () => {
           <img src={Wave} alt="" />
         </div>
         <div className="settings-options">
-          <Link to="archivednotes">
-            <button>ARCHIVED NOTES</button>
-          </Link>
           <Link to="changemail">
             <button>CHANGE EMAIL</button>
           </Link>

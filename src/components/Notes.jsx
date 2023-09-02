@@ -1,11 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Notes = ({ notes }) => {
+  const { currentUser } = useContext(AuthContext);
+  const [noteId, setNoteId] = useState();
+
   const [optionsOpen, setOptionsOpen] = useState(
     new Array(notes.length).fill(false)
   );
+
+  const handleArchive = async (note) => {
+    setNoteId(note.id);
+
+    const noteRef = doc(db, "notes", currentUser.uid);
+
+    const noteDoc = await getDoc(noteRef);
+    const notesData = noteDoc.data().notes;
+
+    const noteIndex = notesData.findIndex((n) => n.id === noteId);
+    if (noteIndex !== -1) {
+      notesData[noteIndex] = {
+        ...notesData[noteIndex],
+        archived: true,
+      };
+      await updateDoc(noteRef, { notes: notesData });
+    }
+  };
 
   const handleOptions = (index) => {
     const newOptionsOpen = [...optionsOpen];
@@ -43,7 +67,7 @@ const Notes = ({ notes }) => {
               >
                 <div
                   className="home-content__container__notes__note__preview__card__note"
-                  dangerouslySetInnerHTML={{ __html: note.note}}
+                  dangerouslySetInnerHTML={{ __html: note.note }}
                 />
               </div>
               <button
@@ -66,7 +90,10 @@ const Notes = ({ notes }) => {
                 </svg>
                 {optionsOpen[index] && (
                   <ul className="preview__options__list">
-                    <li className="preview__options__list__element">
+                    <li
+                      className="preview__options__list__element"
+                      onClick={() => handleArchive(note)}
+                    >
                       Zarchiwizuj
                     </li>
                     <CopyToClipboard

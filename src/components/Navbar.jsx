@@ -3,6 +3,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { ThemeSwitch } from "../functions/themeSwitch";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -30,11 +31,11 @@ const Navbar = () => {
               />
               {options && (
                 <ul className="nav__options__list__element__profile">
-                  <li className="nav__options__list__element__profile__element">
+                  <li className="nav__options__list__element__profile__element" onClick={ThemeSwitch}>
                     Theme switch
                   </li>
                   <li className="nav__options__list__element__profile__element">
-                    Archived
+                    <Link to="archivednotes">Archived</Link>
                   </li>
                   <li className="nav__options__list__element__profile__element">
                     <Link to="settings">Settings</Link>

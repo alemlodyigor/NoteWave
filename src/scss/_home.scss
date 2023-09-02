@@ -1,31 +1,3 @@
-:root {
-  --color-black-primary: #212529;
-  --color-black-secondary: #343a40;
-  --color-black-third: #495057;
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
-  font-size: 62.5%;
-  box-sizing: border-box;
-}
-
-body {
-  font-size: 1.6rem;
-  font-family: sans-serif;
-}
-
-.hidden {
-  display: none;
-}
-
 .home {
   background: linear-gradient(
     180deg,
@@ -104,8 +76,6 @@ body {
       }
 
       &__notes {
-        // width: 100rem;
-        height: 39rem;
         position: relative;
         overflow: hidden;
         margin-top: 5rem;
@@ -115,9 +85,7 @@ body {
         }
 
         &__note {
-          // position: absolute;
           top: 0;
-          // width: 50%;
           height: 30rem;
 
           display: flex;
@@ -132,22 +100,22 @@ body {
             display: flex;
             justify-content: end;
             gap: 14%;
-            &__card{
+            &__card {
               margin: 1rem;
               background-color: #fffeea;
               width: 50%;
               display: flex;
               flex-direction: column;
 
-              &__note{
+              &__note {
                 margin: 1rem;
                 background-color: transparent;
-                border:none;
+                border: none;
                 resize: none;
                 height: 100%;
                 overflow-y: hidden;
+                color: #000;
               }
-
             }
 
             &__btn {

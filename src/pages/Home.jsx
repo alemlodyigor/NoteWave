@@ -20,7 +20,8 @@ const Home = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const notesList = docSnap.data().notes;
-          setNotes(notesList);
+          const notArchived = notesList.filter(note => note.archived === false);
+          setNotes(notArchived);
         }
       }
     };

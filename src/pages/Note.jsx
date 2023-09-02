@@ -44,7 +44,7 @@ const Note = () => {
       </div>
       {note ? (
         <div className="create-content">
-          <div className="create-content__contener">
+          <div className={`create-content__contener ${note.cardType}`}>
             <input
               type="text"
               className="create-content__contener__title"

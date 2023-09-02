@@ -49,7 +49,7 @@ const RoutesConfig = () => {
           element={<ProtectedRoute element={DeleteAcc} />}
         />
         <Route
-          path="/settings/archivednotes"
+          path="archivednotes"
           element={<ProtectedRoute element={Archived} />}
         />
         <Route

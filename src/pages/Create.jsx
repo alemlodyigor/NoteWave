@@ -38,6 +38,7 @@ const Create = () => {
           editedAt: createdAt,
           createdBy: currentUser.uid,
           cardType: cardType,
+          archived: false,
         }),
       });
       setSave(true);
@@ -62,25 +63,25 @@ const Create = () => {
                     className="card-options__list__element"
                     onClick={() => setCardType("blank")}
                   >
-                    Czysta
+                    Blank
                   </li>
                   <li
                     className="card-options__list__element"
                     onClick={() => setCardType("lines")}
                   >
-                    Linia
+                    Lines
                   </li>
                   <li
                     className="card-options__list__element"
                     onClick={() => setCardType("squares")}
                   >
-                    Kratka
+                    Squares
                   </li>
                   <li
                     className="card-options__list__element"
                     onClick={() => setCardType("dots")}
                   >
-                    Kropka
+                    Dotted
                   </li>
                 </ul>
               )}
